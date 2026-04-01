@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Your Setup — NomadDesk</title>
+  <meta name="description" content="Not sure where to start? Answer 3 quick questions and get a curated gear list for your exact situation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">Nomad<span>Desk</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="setup-guide.html" class="active">Setup Guide</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Build my setup</h1>
+      <p>Three questions. One complete gear list. No fluff.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 60px;">
+    <div class="container" style="max-width: 800px;">
+
+      <!-- Quiz -->
+      <div id="quiz">
+        <h2 class="section-title" style="margin-bottom: 8px; font-size: 24px;">Answer 3 quick questions</h2>
+        <p style="color: var(--muted); margin-bottom: 40px; font-size: 15px;">We'll match you with the right gear for your situation.</p>
+
+        <div style="margin-bottom: 32px;">
+          <label style="font-weight: 500; color: var(--black); display: block; margin-bottom: 12px;">1. What's your primary work style?</label>
+          <div class="quiz-options" id="q1">
+            <button class="quiz-btn" data-val="fixed">Fixed home office</button>
+            <button class="quiz-btn" data-val="hybrid">Hybrid (home + office)</button>
+            <button class="quiz-btn" data-val="nomad">Full nomad (cafés, coworking, travel)</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <label style="font-weight: 500; color: var(--black); display: block; margin-bottom: 12px;">2. What's your budget for this build?</label>
+          <div class="quiz-options" id="q2">
+            <button class="quiz-btn" data-val="low">Under $300</button>
+            <button class="quiz-btn" data-val="mid">$300 – $700</button>
+            <button class="quiz-btn" data-val="high">$700+</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 40px;">
+          <label style="font-weight: 500; color: var(--black); display: block; margin-bottom: 12px;">3. What matters most to you?</label>
+          <div class="quiz-options" id="q3">
+            <button class="quiz-btn" data-val="portability">Portability & weight</button>
+            <button class="quiz-btn" data-val="productivity">Productivity & screen space</button>
+            <button class="quiz-btn" data-val="video">Video & audio quality</button>
+          </div>
+        </div>
+
+        <button id="buildBtn" class="btn btn-primary" style="opacity: 0.4; cursor: not-allowed;" disabled>
+          Show my gear list &#8594;
+        </button>
+      </div>
+
+      <!-- Results (hidden until quiz done) -->
+      <div id="results" style="display:none;">
+        <div style="border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 48px;">
+          <span class="eyebrow">Your personalised build</span>
+          <h2 class="section-title" id="resultsTitle" style="margin-bottom: 8px;"></h2>
+          <p id="resultsDesc" style="color: var(--muted); font-size: 15px;"></p>
+        </div>
+
+        <div id="guideSteps"></div>
+
+        <div style="background: var(--bg-warm); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-top: 48px;">
+          <strong style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: block; margin-bottom: 8px;">Affiliate Disclosure</strong>
+          <p style="font-size: 14px; color: var(--muted); margin: 0;">All Amazon links on this page are affiliate links. If you purchase through them, we earn a small commission at no extra cost to you. This helps us keep the site free and ad-free. <a href="affiliate-disclosure.html" style="color: var(--accent);">Read our full disclosure.</a></p>
+        </div>
+
+        <button onclick="document.getElementById('quiz').style.display='block'; document.getElementById('results').style.display='none';" class="btn btn-ghost" style="margin-top: 24px;">&#8592; Start over</button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Nomad<span>Desk</span></a>
+        <p>Independent gear reviews for the modern remote worker.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <strong>Site</strong>
+          <a href="index.html">Home</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="setup-guide.html">Setup Guide</a>
+          <a href="about.html">About</a>
+        </div>
+        <div>
+          <strong>Legal</strong>
+          <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container"><p>© 2025 NomadDesk. Participant in the Amazon Services LLC Associates Program.</p></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const answers = { q1: null, q2: null, q3: null };
+
+    document.querySelectorAll('.quiz-options').forEach((group, i) => {
+      group.querySelectorAll('.quiz-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          group.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          answers['q' + (i+1)] = btn.dataset.val;
+          checkReady();
+        });
+      });
+    });
+
+    function checkReady() {
+      if (answers.q1 && answers.q2 && answers.q3) {
+        const btn = document.getElementById('buildBtn');
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+      }
+    }
+
+    const gearDatabase = {
+      monitors: {
+        low: { name: 'Dell S2421H 24" FHD', price: '~$160', link: 'https://www.amazon.com/s?k=Dell+S2421H&tag=YOUR-TAG-20', note: 'Best IPS panel under $200. Accurate colours, built-in speakers.' },
+        mid: { name: 'LG 27UN880-B 27" 4K Ergo', price: '~$500', link: 'https://www.amazon.com/dp/B086HXV4W8?tag=YOUR-TAG-20', note: 'USB-C 96W PD + ergo arm. One cable to rule them all.' },
+        high: { name: 'Dell UltraSharp U2723DE 27" 4K', price: '~$700', link: 'https://www.amazon.com/s?k=Dell+U2723DE&tag=YOUR-TAG-20', note: 'IPS Black panel, KVM switch, USB-C hub built in.' }
+      },
+      monitorPortable: { name: 'ASUS ZenScreen MB16AC Portable', price: '~$230', link: 'https://www.amazon.com/s?k=ASUS+ZenScreen+MB16AC&tag=YOUR-TAG-20', note: 'USB-C powered, slip into your bag for an instant 2nd screen.' },
+      keyboards: {
+        low: { name: 'Keychron K2 Wireless', price: '~$90', link: 'https://www.amazon.com/s?k=Keychron+K2+wireless&tag=YOUR-TAG-20', note: 'Compact 75%, Bluetooth, hot-swap. Hard to beat at this price.' },
+        mid: { name: 'Keychron K3 Pro', price: '~$120', link: 'https://www.amazon.com/s?k=Keychron+K3+Pro&tag=YOUR-TAG-20', note: 'Low-profile 75%, tri-mode Bluetooth, QMK/VIA programmable.' },
+        high: { name: 'Logitech MX Keys S', price: '~$110', link: 'https://www.amazon.com/s?k=Logitech+MX+Keys+S&tag=YOUR-TAG-20', note: 'Pairs with 3 devices, per-key backlighting, whisper-quiet.' }
+      },
+      webcams: {
+        low: { name: 'Logitech C920x 1080p', price: '~$80', link: 'https://www.amazon.com/dp/B085TFF7M1?tag=YOUR-TAG-20', note: 'Reliable 1080p, works everywhere, no drivers needed.' },
+        mid: { name: 'Logitech C930e Business', price: '~$130', link: 'https://www.amazon.com/s?k=Logitech+C930e&tag=YOUR-TAG-20', note: '1080p, 90° wide angle, H.264 compression for weak WiFi.' },
+        high: { name: 'Logitech Brio 4K Ultra HD', price: '~$200', link: 'https://www.amazon.com/s?k=Logitech+Brio+4K&tag=YOUR-TAG-20', note: '4K HDR, Windows Hello, adjustable FOV. Your face as a brand asset.' }
+      },
+      audio: {
+        low: { name: 'Jabra Evolve2 30 Headset', price: '~$100', link: 'https://www.amazon.com/s?k=Jabra+Evolve2+30&tag=YOUR-TAG-20', note: 'Certified for Teams/Zoom, good passive noise isolation.' },
+        mid: { name: 'Sony WH-1000XM5', price: '~$280', link: 'https://www.amazon.com/dp/B09XS7JWHH?tag=YOUR-TAG-20', note: 'Best-in-class ANC, 30hr battery, multipoint Bluetooth.' },
+        high: { name: 'Sony WH-1000XM5 + Blue Yeti Mic', price: '~$380', link: 'https://www.amazon.com/s?k=Blue+Yeti+USB+Microphone&tag=YOUR-TAG-20', note: 'Separate best-in-class headphones and microphone.' }
+      },
+      hub: { name: 'Anker 7-in-1 USB-C Hub', price: '~$35', link: 'https://www.amazon.com/s?k=Anker+7-in-1+USB-C+hub&tag=YOUR-TAG-20', note: '4K HDMI, USB-A ×3, SD, 100W PD. Essential for laptop users.' }
+    };
+
+    document.getElementById('buildBtn').addEventListener('click', () => {
+      const { q1, q2, q3 } = answers;
+      const budget = q2;
+      const isNomad = q1 === 'nomad';
+
+      const titles = {
+        fixed: { low: 'The Lean Home Office', mid: 'The Solid Home Office', high: 'The Premium Workstation' },
+        hybrid: { low: 'The Flexible Budget Build', mid: 'The Hybrid Sweet Spot', high: 'The Executive Hybrid' },
+        nomad: { low: 'The Lightweight Nomad Kit', mid: 'The Serious Nomad Build', high: 'The Full Nomad Arsenal' }
+      };
+      document.getElementById('resultsTitle').textContent = titles[q1][budget];
+      document.getElementById('resultsDesc').textContent = `Curated for a ${q1.replace('nomad','full-time digital nomad').replace('hybrid','hybrid worker').replace('fixed','fixed home office')} on a ${budget === 'low' ? 'sub-$300' : budget === 'mid' ? '$300–700' : '$700+'} budget, prioritising ${q3.replace('portability','portability & weight').replace('productivity','productivity & screen space').replace('video','video & audio quality')}.`;
+
+      const steps = [];
+
+      // Monitor
+      const monCopy = isNomad && q3 === 'portability' ? gearDatabase.monitorPortable : gearDatabase.monitors[budget];
+      steps.push({ num: '1', title: 'Display', desc: 'Your primary screen makes the biggest impact on daily productivity and eye strain.', products: [monCopy] });
+
+      // Keyboard
+      steps.push({ num: '2', title: 'Keyboard', desc: 'If you type all day, your keyboard deserves more than an afterthought.', products: [gearDatabase.keyboards[budget]] });
+
+      // Webcam & Audio (combine for video priority)
+      if (q3 === 'video') {
+        steps.push({ num: '3', title: 'Webcam & Audio', desc: 'Great audio matters more than great video. But with both, you become the pro on every call.', products: [gearDatabase.webcams[budget], gearDatabase.audio[budget]] });
+      } else {
+        steps.push({ num: '3', title: 'Webcam', desc: 'Even on a Zoom call, a decent webcam signals professionalism.', products: [gearDatabase.webcams[budget === 'high' ? 'mid' : 'low']] });
+      }
+
+      // Hub
+      steps.push({ num: '4', title: 'The essentials', desc: 'One hub, zero cable chaos. This is the most-used item on any nomad desk.', products: [gearDatabase.hub] });
+
+      const stepsHtml = steps.map(step => `
+        <div class="guide-step">
+          <div class="step-num">${step.num}</div>
+          <div>
+            <h3 style="font-family: var(--serif); font-size: 22px; color: var(--black); margin-bottom: 6px;">${step.title}</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-bottom: 16px;">${step.desc}</p>
+            <div class="guide-product-row" style="grid-template-columns: repeat(${step.products.length}, 1fr);">
+              ${step.products.map(p => `
+                <div class="guide-product-mini">
+                  <h4>${p.name}</h4>
+                  <span class="price">${p.price}</span>
+                  <p style="font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5;">${p.note}</p>
+                  <a href="${p.link}" target="_blank" rel="nofollow sponsored noopener">Check on Amazon &#8594;</a>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('guideSteps').innerHTML = stepsHtml;
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+  <style>
+    .quiz-options { display: flex; flex-wrap: wrap; gap: 10px; }
+    .quiz-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quiz-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .quiz-btn.selected { background: var(--black); border-color: var(--black); color: var(--white); }
+  </style>
+
+</body>
+</html>
